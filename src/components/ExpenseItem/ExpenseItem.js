@@ -1,4 +1,5 @@
 import React from "react";
+import Calender from "./Calender";
 
 function ExpenseItem(props) {
   return (
@@ -14,25 +15,7 @@ function ExpenseItem(props) {
             "
     >
       {/* <!--      calender    --> */}
-      <div
-        class="
-                d-flex
-                flex-column
-                justify-content-evenly
-                m-3
-                bg-primary
-                p-5
-                align-items-center
-                col-3
-                text-light
-                calendar
-              "
-      >
-        <div class="fw-bold text-capitalize fs-6 mt--3">Nov</div>
-
-        <div class="fs-6">2021</div>
-        <div class="fs-1">24</div>
-      </div>
+      <Calender />
       {/* <!--      items name    --> */}
       <div class="fw-bold col m-auto text-capitalize">items name</div>
       {/* <!--    item price      --> */}

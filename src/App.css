@@ -26,7 +26,6 @@
   box-sizing: border-box;
 }
 .inner-bar {
-  height: 88%;
   min-width: 5px;
   max-width: 10px;
 }
