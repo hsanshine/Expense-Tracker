@@ -79,16 +79,16 @@ let monthsPlot = dataPoints.map((point) => (
 
 // for (let i = 0; i < 12; i++) months.push(<MonthPlot />);
 
-function ExpensesChart() {
+function ExpensesChart(props) {
   return (
-    <div class="p-3 m-3 rounded-3 bg-primary text-white">
+    <div className="p-3 m-3 rounded-3 bg-primary text-white">
       <div className="d-flex">
         <h2 className="m-3">chart area</h2>
         <div className="ms-auto my-auto me-3 fw-bold"> 2022</div>
       </div>
 
       {/* <!--  chart background    --> */}
-      <div class="bg-warning p-2 chart-background">
+      <div className="bg-warning p-2 chart-background">
         {/* <!--    single month bar    --> */}
         {monthsPlot}
 

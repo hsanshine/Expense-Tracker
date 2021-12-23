@@ -3,7 +3,7 @@ import React from "react";
 function Calender(props) {
   return (
     <div
-      class="
+      className="
                 d-flex
                 flex-column
                 justify-content-evenly
@@ -16,10 +16,10 @@ function Calender(props) {
                 calendar
               "
     >
-      <div class="fw-bold text-capitalize fs-6 mt--3">Nov</div>
+      <div className="fw-bold text-capitalize fs-6 mt--3">Nov</div>
 
-      <div class="fs-6">{props.year}</div>
-      <div class="fs-1">{props.day}</div>
+      <div className="fs-6">{props.year}</div>
+      <div className="fs-1">{props.day}</div>
     </div>
   );
 }
