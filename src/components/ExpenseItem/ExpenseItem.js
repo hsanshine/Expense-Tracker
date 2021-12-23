@@ -15,10 +15,11 @@ function ExpenseItem(props) {
             "
     >
       {/* <!--      calender    --> */}
-      <Calender />
+      <Calender day={props.day} month={props.month} year={props.year} />
       {/* <!--      items name    --> */}
-      <div class="fw-bold col m-auto text-capitalize">items name</div>
+      <div class="fw-bold col m-auto text-capitalize"> {props.name}</div>
       {/* <!--    item price      --> */}
+
       <div class="col my-auto ms-auto me-2 d-flex justify-content-end">
         <div
           class="
@@ -32,7 +33,7 @@ function ExpenseItem(props) {
                   expense-price
                 "
         >
-          $ 20000
+          {"$" + props.price}
         </div>
       </div>
     </div>

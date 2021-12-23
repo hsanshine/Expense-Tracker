@@ -18,8 +18,8 @@ function Calender(props) {
     >
       <div class="fw-bold text-capitalize fs-6 mt--3">Nov</div>
 
-      <div class="fs-6">2021</div>
-      <div class="fs-1">24</div>
+      <div class="fs-6">{props.year}</div>
+      <div class="fs-1">{props.day}</div>
     </div>
   );
 }

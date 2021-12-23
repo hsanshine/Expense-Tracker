@@ -1,7 +1,23 @@
 import React from "react";
 import ExpenseItem from "./ExpenseItem/ExpenseItem";
 
-function ExpensesList() {
+function ExpensesList(props) {
+  let items = props.expenses.map((item) => {
+    let day = item.date.getDate();
+    let year = item.date.getFullYear();
+    let month = item.date.getMonth();
+    let price = item.price;
+    let name = item.name;
+    return (
+      <ExpenseItem
+        year={year}
+        month={month}
+        day={day}
+        price={price}
+        name={name}
+      />
+    );
+  });
   return (
     //  <!--  expenses -->
     <div class="row m-3 p-2 border border-3 border-primary rounded-2">
@@ -10,7 +26,7 @@ function ExpensesList() {
       {/* <!--  expenses list    --> */}
       <div class="d-flex flex-column justify-content-around text-light">
         {/* expense item */}
-        <ExpenseItem />
+        {items}
       </div>
     </div>
   );
