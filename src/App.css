@@ -1,0 +1,76 @@
+/* calender css */
+.calendar {
+  border-radius: 10px;
+  width: 6.25rem;
+  height: 6.875rem;
+  box-sizing: border-box;
+}
+/* whole body css */
+.main {
+  min-width: 31.25rem;
+  max-width: 70rem;
+}
+
+/*  chart css */
+
+.chart-background {
+  height: 18.75rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: auto;
+}
+.outer-bar {
+  max-width: 25%;
+  height: 90%;
+  box-sizing: border-box;
+}
+.inner-bar {
+  height: 88%;
+  min-width: 5px;
+  max-width: 10px;
+}
+
+.short-month {
+  visibility: hidden;
+  position: absolute;
+}
+@media (max-width: 31.25rem) {
+  /*   .chart {
+    visibility: hidden;
+  } */
+  .chart-background {
+    height: 25rem;
+    display: grid;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: auto;
+  }
+  .outer-bar {
+    min-width: 5px;
+    max-width: 25%;
+    height: 90%;
+    box-sizing: border-box;
+  }
+  .inner-bar {
+    height: 88%;
+    min-width: 5px;
+    max-width: 10px;
+  }
+  /* .full-month {
+    visibility: hidden;
+    position: absolute;
+  } */
+  /* .short-month {
+    visibility: visible;
+    position: static;
+  } */
+}
+
+/* expenses css */
+.expense-price {
+  width: 6.25rem;
+}
+.expense-item {
+  height: 9.375rem;
+}

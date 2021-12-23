@@ -1,9 +1,19 @@
 import "./App.css";
-
+import NavBar from "./components/NavBar";
+import ExpenseForm from "./components/ExpenseForm";
+import FilterSection from "./components/FilterSection";
+import ExpensesChart from "./components/ExpensesChart";
+import ExpensesList from "./components/ExpensesList";
 function App() {
   return (
     <div>
-      <h1>Expense Tracker Project...</h1>
+      <div className="main container mt-3 bg-light">
+        <NavBar />
+        <ExpenseForm />
+        <FilterSection />
+        <ExpensesChart />
+        <ExpensesList />
+      </div>
     </div>
   );
 }
