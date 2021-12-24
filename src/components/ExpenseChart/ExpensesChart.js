@@ -84,7 +84,7 @@ function ExpensesChart(props) {
     <div className="p-3 m-3 rounded-3 bg-primary text-white">
       <div className="d-flex">
         <h2 className="m-3">chart area</h2>
-        <div className="ms-auto my-auto me-3 fw-bold"> 2022</div>
+        <div className="ms-auto my-auto me-3 fw-bold">{props.displayYear}</div>
       </div>
 
       {/* <!--  chart background    --> */}

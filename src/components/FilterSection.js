@@ -1,14 +1,16 @@
 import React from "react";
 
-function FilterSection(props) {
+function FilterSection({ onFilterChange }) {
+  const filterChangeHandler = (e) => {
+    onFilterChange(e.target.value);
+    //console.log(`value has changed to ${e.target.value}`);
+  };
   return (
     <div className="row p-3 m-3 rounded-3 bg-primary text-white">
       <div className="col-sm-4 mb-1 fw-bold fs-5">Filtered by Year:</div>
       <div className="col-sm-6 col-md-3 ms-auto">
         <select
-          onChange={() => {
-            console.log("user changed the filter");
-          }}
+          onChange={filterChangeHandler}
           className="form-select"
           aria-label="Default select example"
         >

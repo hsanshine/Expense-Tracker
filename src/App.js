@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import ExpenseForm from "./components/ExpenseForm";
@@ -39,16 +40,26 @@ let seed = [
   },
 ];
 function App() {
+  //initial seed data to state
+
+  // for year choosen in filter, we start at 2019
+  const [filterYear, setFilterYear] = useState(2019);
+
+  // for filtering the state for selected year
+  // when filter is changed
+  const onFilterYearChange = (newYear) => {
+    setFilterYear(newYear);
+    console.log(`filter year changed ${newYear}`);
+  };
   return (
     <div>
       <div className="main container mt-3 bg-light">
         <NavBar />
         <ExpenseForm />
-        <FilterSection />
-        <ExpensesChart />
+        <FilterSection onFilterChange={onFilterYearChange} />
+        <ExpensesChart displayYear={filterYear} />
         <ExpensesList expenses={seed} />
       </div>
-      yt
     </div>
   );
 }
