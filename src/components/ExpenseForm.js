@@ -22,6 +22,7 @@ function ExpenseForm(props) {
     setItemName("");
     setItemPrice("");
     setItemDate("");
+    props.onFormClose();
     // console.log("form submit was canceled");
   };
   const onSubmitHandler = (event) => {
@@ -33,6 +34,7 @@ function ExpenseForm(props) {
     };
     //console.log(newExpense);
     props.onFormSubmit(newExpense);
+    props.onFormClose();
     setItemName("");
     setItemPrice("");
     setItemDate("");

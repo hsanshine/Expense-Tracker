@@ -5,6 +5,7 @@ import ExpenseForm from "./components/ExpenseForm";
 import FilterSection from "./components/FilterSection";
 import ExpensesChart from "./components/ExpenseChart/ExpensesChart";
 import ExpensesList from "./components/ExpensesList";
+import AddButton from "./components/AddButton";
 import { v4 } from "uuid";
 
 let seed = [
@@ -47,6 +48,9 @@ function App() {
   // for year choosen in filter, we start at 2019
   const [filterYear, setFilterYear] = useState(defaultYear);
 
+  // variable to show the form or not
+  const [showForm, setShowForm] = useState(false);
+
   //helper function to filter entries
   const getFilterEntries = (Year) => {
     console.log(`filtering for ${Year}`);
@@ -85,17 +89,30 @@ function App() {
     );
     console.log(newEntry);
   };
+
+  // form toggle handler
+  const formToggleHandler = () => {
+    setShowForm(!showForm);
+  };
+
   return (
     <div>
       <div className="main container mt-3 bg-light">
         <NavBar />
-        <ExpenseForm onFormSubmit={onAddNew} />
+        {!showForm && <AddButton onFormToggle={formToggleHandler} />}
+        {showForm && (
+          <ExpenseForm
+            onFormSubmit={onAddNew}
+            onFormClose={formToggleHandler}
+          />
+        )}
         <FilterSection
           onFilterChange={onFilterYearChange}
           intialSelection={filterYear}
         />
-        {/* <ExpensesChart displayYear={filterYear} /> */}
+
         <ExpensesList expenses={filteredEntries} />
+        <ExpensesChart displayYear={filterYear} />
       </div>
     </div>
   );
