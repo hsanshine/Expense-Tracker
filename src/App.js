@@ -50,14 +50,16 @@ function App() {
   //helper function to filter entries
   const getFilterEntries = (Year) => {
     console.log(`filtering for ${Year}`);
-    let results = entries.filter((entry) => entry.date.getFullYear() === Year);
+    let results = entries.filter(
+      (entry) => entry.date.getFullYear() === Number(Year)
+    );
     console.log(results);
     return results;
   };
 
   // array for filtered entries
   const [filteredEntries, setFilteredEntries] = useState(() =>
-    getFilterEntries(defaultYear)
+    getFilterEntries(filterYear)
   );
 
   // when filter is changed
@@ -67,16 +69,32 @@ function App() {
     setFilteredEntries(() => getFilterEntries(Number(newYear)));
     console.log(`filter year changed ${newYear}`);
   };
+
+  //on add new expense
+  const onAddNew = (newExpense) => {
+    const newEntry = {
+      id: v4(),
+      date: new Date(newExpense.date),
+      name: newExpense.name,
+      price: newExpense.price,
+    };
+    setEntries([...entries, newEntry]);
+    setFilterYear(newEntry.date.getFullYear());
+    setFilteredEntries(() =>
+      getFilterEntries(Number(newEntry.date.getFullYear()))
+    );
+    console.log(newEntry);
+  };
   return (
     <div>
       <div className="main container mt-3 bg-light">
         <NavBar />
-        <ExpenseForm />
+        <ExpenseForm onFormSubmit={onAddNew} />
         <FilterSection
           onFilterChange={onFilterYearChange}
-          intialSelection={defaultYear}
+          intialSelection={filterYear}
         />
-        <ExpensesChart displayYear={filterYear} />
+        {/* <ExpensesChart displayYear={filterYear} /> */}
         <ExpensesList expenses={filteredEntries} />
       </div>
     </div>
