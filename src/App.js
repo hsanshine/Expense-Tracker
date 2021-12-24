@@ -10,7 +10,7 @@ import { v4 } from "uuid";
 let seed = [
   {
     id: v4(),
-    date: new Date("2020-12-17"),
+    date: new Date("2019-12-17"),
     name: "books",
     price: "50",
   },
@@ -22,33 +22,49 @@ let seed = [
   },
   {
     id: v4(),
-    date: new Date("2020-06-17"),
+    date: new Date("2021-06-17"),
     name: "partying",
     price: "200",
   },
   {
     id: v4(),
-    date: new Date("2020-02-17"),
+    date: new Date("2022-02-17"),
     name: "rent",
     price: "2000",
   },
   {
     id: v4(),
-    date: new Date("2020-01-17"),
+    date: new Date("2021-01-17"),
     name: "dates",
     price: "300",
   },
 ];
 function App() {
+  const defaultYear = new Date().getFullYear().toString();
   //initial seed data to state
+  const [entries, setEntries] = useState(seed);
 
   // for year choosen in filter, we start at 2019
-  const [filterYear, setFilterYear] = useState(2019);
+  const [filterYear, setFilterYear] = useState(defaultYear);
 
-  // for filtering the state for selected year
+  //helper function to filter entries
+  const getFilterEntries = (Year) => {
+    console.log(`filtering for ${Year}`);
+    let results = entries.filter((entry) => entry.date.getFullYear() === Year);
+    console.log(results);
+    return results;
+  };
+
+  // array for filtered entries
+  const [filteredEntries, setFilteredEntries] = useState(() =>
+    getFilterEntries(defaultYear)
+  );
+
   // when filter is changed
   const onFilterYearChange = (newYear) => {
+    console.log(typeof newYear);
     setFilterYear(newYear);
+    setFilteredEntries(() => getFilterEntries(Number(newYear)));
     console.log(`filter year changed ${newYear}`);
   };
   return (
@@ -56,9 +72,12 @@ function App() {
       <div className="main container mt-3 bg-light">
         <NavBar />
         <ExpenseForm />
-        <FilterSection onFilterChange={onFilterYearChange} />
+        <FilterSection
+          onFilterChange={onFilterYearChange}
+          intialSelection={defaultYear}
+        />
         <ExpensesChart displayYear={filterYear} />
-        <ExpensesList expenses={seed} />
+        <ExpensesList expenses={filteredEntries} />
       </div>
     </div>
   );

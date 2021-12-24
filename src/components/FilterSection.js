@@ -1,7 +1,10 @@
+import { useState } from "react";
 import React from "react";
 
-function FilterSection({ onFilterChange }) {
+function FilterSection({ onFilterChange, intialSelection }) {
+  const [selectedValue, setSelectedValue] = useState(intialSelection);
   const filterChangeHandler = (e) => {
+    setSelectedValue(e.target.value);
     onFilterChange(e.target.value);
     //console.log(`value has changed to ${e.target.value}`);
   };
@@ -13,8 +16,9 @@ function FilterSection({ onFilterChange }) {
           onChange={filterChangeHandler}
           className="form-select"
           aria-label="Default select example"
+          value={selectedValue}
         >
-          <option defaultValue={"2019"}>2019</option>
+          <option value="2019">2019</option>
           <option value="2020">2020</option>
           <option value="2021">2021</option>
           <option value="2022">2022</option>
