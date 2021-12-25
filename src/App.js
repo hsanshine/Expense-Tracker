@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./App.css";
 import NavBar from "./components/NavBar";
 import ExpenseForm from "./components/ExpenseForm";
 import FilterSection from "./components/FilterSection";

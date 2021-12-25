@@ -1,17 +1,10 @@
-/* calender css */
-.calendar {
-  border-radius: 10px;
-  width: 6.25rem;
-  height: 6.875rem;
-  box-sizing: border-box;
-}
-/* whole body css */
+/*************************** main body css****************************/
 .main {
   min-width: 31.25rem;
   max-width: 60%;
 }
 
-/*  chart css */
+/*************************** chart css****************************/
 
 .chart-background {
   height: 18.75rem;
@@ -35,9 +28,6 @@
   position: absolute;
 }
 @media (max-width: 31.25rem) {
-  /*   .chart {
-    visibility: hidden;
-  } */
   .chart-background {
     height: 25rem;
     display: grid;
@@ -56,20 +46,31 @@
     min-width: 5px;
     max-width: 10px;
   }
-  /* .full-month {
-    visibility: hidden;
-    position: absolute;
-  } */
-  /* .short-month {
-    visibility: visible;
-    position: static;
-  } */
 }
 
-/* expenses css */
+/*************************** expenses list css****************************/
 .expense-price {
   width: 6.25rem;
 }
 .expense-item {
   height: 9.375rem;
+}
+
+/******************************* calendar css****************************/
+.expense-item-icon:hover {
+  font-size: 1.2rem;
+}
+.edit-icon:active {
+  color: blue;
+}
+.trash-icon:active {
+  color: red;
+}
+
+/******************************* calendar css****************************/
+.calendar {
+  border-radius: 10px;
+  width: 6.25rem;
+  height: 6.875rem;
+  box-sizing: border-box;
 }

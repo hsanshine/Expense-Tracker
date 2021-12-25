@@ -41,10 +41,10 @@ function ExpenseItem(props) {
           </div>
           <div
             class="position-absolute"
-            style={{ top: "3.5rem", right: "2rem" }}
+            style={{ top: "3.5rem", right: "2.5rem" }}
           >
-            <FaEdit class="me-4" />
-            <FaTrashAlt />
+            <FaEdit class="me-3 expense-item-icon edit-icon" />
+            <FaTrashAlt class="ms-auto expense-item-icon trash-icon" />
           </div>
         </div>
       </div>
