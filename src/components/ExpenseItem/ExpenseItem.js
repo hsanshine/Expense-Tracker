@@ -1,5 +1,6 @@
 import React from "react";
 import Calender from "./Calender";
+import { FaEdit, FaBeer, FaTrashAlt } from "react-icons/fa";
 
 function ExpenseItem(props) {
   return (
@@ -20,9 +21,10 @@ function ExpenseItem(props) {
       <div className="fw-bold col m-auto text-capitalize"> {props.name}</div>
       {/* <!--    item price      --> */}
 
-      <div className="col my-auto ms-auto me-2 d-flex justify-content-end">
-        <div
-          className="
+      <div className=" col my-auto position-relative">
+        <div className="ms-auto my-auto ">
+          <div
+            className="
                   fw-bold
                   py-2
                   d-flex
@@ -31,9 +33,19 @@ function ExpenseItem(props) {
                   border border-2 border-light
                   rounded-pill
                   expense-price
+                  ms-auto
+                  me-1
                 "
-        >
-          {"$" + props.price}
+          >
+            {"$" + props.price}
+          </div>
+          <div
+            class="position-absolute"
+            style={{ top: "3.5rem", right: "2rem" }}
+          >
+            <FaEdit class="me-4" />
+            <FaTrashAlt />
+          </div>
         </div>
       </div>
     </div>
