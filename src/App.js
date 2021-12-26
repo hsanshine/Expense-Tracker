@@ -20,7 +20,7 @@ function App() {
   const [showForm, setShowForm] = useState(false);
 
   // for year choosen in filter, we start at 2019
-  // const [filterYear, setFilterYear] = useState(defaultYear);
+  const [filterYear, setFilterYear] = useState(defaultYear);
 
   // array for filtered entries
   const [filteredEntries, setFilteredEntries] = useState(
@@ -72,7 +72,7 @@ function App() {
         />
 
         <ExpensesList expenses={filteredEntries} />
-        {/* <ExpensesChart displayYear={filterYear} /> */}
+        <ExpensesChart displayYear={filterYear} />
       </div>
     </div>
   );
