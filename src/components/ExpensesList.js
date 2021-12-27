@@ -1,8 +1,15 @@
 import React from "react";
 import ExpenseItem from "./ExpenseItem/ExpenseItem";
+import { filterEntries } from "../helpers";
 
-function ExpensesList(props) {
-  let items = props.expenses.map((item) => {
+// // array for filtered entries
+// const [filteredEntries, setFilteredEntries] = useState(
+//   filterEntries(entries, initialYear)
+// );
+
+function ExpensesList({ expenses, displayYear }) {
+  let filteredExpenses = filterEntries(expenses, displayYear);
+  let items = filteredExpenses.map((item) => {
     let key = item.id;
     let day = item.date.getDate();
     let year = item.date.getFullYear();

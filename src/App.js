@@ -6,12 +6,12 @@ import ExpensesChart from "./components/ExpenseChart/ExpensesChart";
 import ExpensesList from "./components/ExpensesList";
 import AddButton from "./components/AddButton";
 import { seed } from "./seed";
-import { filterEntries } from "./helpers";
+
 import { v4 } from "uuid";
 
 function App() {
   //show the current year data on start
-  const defaultYear = new Date().getFullYear().toString();
+  let initialYear = new Date().getFullYear().toString();
 
   //initial seed data to state
   const [entries, setEntries] = useState(seed);
@@ -20,35 +20,26 @@ function App() {
   const [showForm, setShowForm] = useState(false);
 
   // for year choosen in filter, we start at 2019
-  const [filterYear, setFilterYear] = useState(defaultYear);
-
-  // array for filtered entries
-  const [filteredEntries, setFilteredEntries] = useState(
-    filterEntries(entries, defaultYear)
-  );
+  const [filterYear, setFilterYear] = useState(initialYear);
 
   // when filter is changed
   const onFilterYearChange = (newYear) => {
-    console.log(newYear);
-    setFilteredEntries(() => filterEntries(entries, Number(newYear)));
-    console.log(`filter year changed ${newYear}`);
+    // setFilteredEntries(() => filterEntries(entries, Number(newYear)));
+    setFilterYear(newYear);
   };
 
-  // //on add new expense
-  // const onAddNew = (newExpense) => {
-  //   const newEntry = {
-  //     id: v4(),
-  //     date: new Date(newExpense.date),
-  //     name: newExpense.name,
-  //     price: newExpense.price,
-  //   };
-  //   setEntries([...entries, newEntry]);
-  //   setFilterYear(newEntry.date.getFullYear());
-  //   setFilteredEntries(() =>
-  //     getFilterEntries(Number(newEntry.date.getFullYear()))
-  //   );
-  //   console.log(newEntry);
-  // };
+  //on add new expense
+  const addNewHandler = (newExpense) => {
+    const newEntry = {
+      id: v4(),
+      date: new Date(newExpense.date),
+      name: newExpense.name,
+      price: newExpense.price,
+    };
+
+    setEntries(() => [...entries, newEntry]);
+    setFilterYear(newEntry.date.getFullYear());
+  };
 
   // form toggle handler
   const formToggleHandler = () => {
@@ -62,16 +53,16 @@ function App() {
         {!showForm && <AddButton onFormToggle={formToggleHandler} />}
         {showForm && (
           <ExpenseForm
-            // onFormSubmit={onAddNew}
+            onFormSubmit={addNewHandler}
             onFormClose={formToggleHandler}
           />
         )}
         <FilterSection
           onFilterChange={onFilterYearChange}
-          currenSelection={defaultYear}
+          userSelection={filterYear}
         />
 
-        <ExpensesList expenses={filteredEntries} />
+        <ExpensesList expenses={entries} displayYear={filterYear} />
         {/* <ExpensesChart displayYear={filterYear} /> */}
       </div>
     </div>
