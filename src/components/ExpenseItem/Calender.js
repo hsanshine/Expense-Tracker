@@ -1,6 +1,7 @@
 import React from "react";
+import { monthName } from "../../helpers";
 
-function Calender(props) {
+function Calender({ year, day, month }) {
   return (
     <div
       className="
@@ -16,10 +17,12 @@ function Calender(props) {
                 calendar
               "
     >
-      <div className="fw-bold text-capitalize fs-6 mt--3">Nov</div>
+      <div className="fw-bold text-capitalize fs-6 mt-3 mb-1">
+        {monthName(month)}
+      </div>
 
-      <div className="fs-6">{props.year}</div>
-      <div className="fs-1">{props.day}</div>
+      <div className="fs-6">{year}</div>
+      <div className="fs-1 mb-3">{day}</div>
     </div>
   );
 }

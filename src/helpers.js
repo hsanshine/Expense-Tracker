@@ -9,4 +9,22 @@ const filterEntries = (entriesArray, Year) => {
 // const compareDates = (date1, date2){
 
 // }
-export { filterEntries };
+
+const monthName = (month) => {
+  let monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  return monthNames[Number(month)];
+};
+export { filterEntries, monthName };

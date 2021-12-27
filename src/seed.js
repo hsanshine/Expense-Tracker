@@ -45,7 +45,7 @@ export const seed = [
   {
     id: v4(),
     date: new Date("2021-01-29"),
-    name: "dates",
+    name: "trips",
     price: "300",
   },
 ];

@@ -53,19 +53,6 @@ let dataPoints = [
   },
 ];
 
-let monthNames = [
-  "Jan",
-  "Feb",
-  "Apr",
-  "Mar",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
 // let months = [];
 
 // months = monthNames.map((name) => <MonthPlot monthName={name} />);
