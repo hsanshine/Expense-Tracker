@@ -23,7 +23,7 @@ function App() {
   const [filterYear, setFilterYear] = useState(initialYear);
 
   // when filter is changed
-  const onFilterYearChange = (newYear) => {
+  const filterChangeHandler = (newYear) => {
     // setFilteredEntries(() => filterEntries(entries, Number(newYear)));
     setFilterYear(newYear);
   };
@@ -46,6 +46,19 @@ function App() {
     setShowForm(!showForm);
   };
 
+  // edit handler, should provide edit form
+  const editHandler = () => {
+    console.log("item was editing, app.js");
+  };
+
+  // trashing handler function
+  const trashHandler = (id) => {
+    console.log(`item ${id}`);
+    //search for it in entries and delete
+    setEntries((entries) => entries.filter((entry) => entry.id !== id));
+    console.log("item was deleted!");
+  };
+
   return (
     <div>
       <div className="main container mt-3 pb-3 bg-light">
@@ -58,11 +71,16 @@ function App() {
           />
         )}
         <FilterSection
-          onFilterChange={onFilterYearChange}
+          onFilterChange={filterChangeHandler}
           userSelection={filterYear}
         />
 
-        <ExpensesList expenses={entries} displayYear={filterYear} />
+        <ExpensesList
+          expenses={entries}
+          displayYear={filterYear}
+          onEdit={editHandler}
+          onTrash={trashHandler}
+        />
         {/* <ExpensesChart displayYear={filterYear} /> */}
       </div>
     </div>

@@ -2,7 +2,7 @@ import React from "react";
 import ExpenseItem from "./ExpenseItem/ExpenseItem";
 import { filterEntries } from "../helpers";
 
-function ExpensesList({ expenses, displayYear }) {
+function ExpensesList({ expenses, displayYear, onEdit, onTrash }) {
   expenses.sort((a, b) => a.date - b.date);
   let filteredExpenses = filterEntries(expenses, displayYear);
   let items = filteredExpenses.map((item) => {
@@ -14,12 +14,15 @@ function ExpensesList({ expenses, displayYear }) {
     let name = item.name;
     return (
       <ExpenseItem
+        id={item.id}
         key={key}
         year={year}
         month={month}
         day={day}
         price={price}
         name={name}
+        onEdit={onEdit}
+        onTrash={onTrash}
       />
     );
   });

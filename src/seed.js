@@ -8,9 +8,21 @@ export const seed = [
   },
   {
     id: v4(),
+    date: new Date("2019-04-24"),
+    name: "travel",
+    price: "570",
+  },
+  {
+    id: v4(),
     date: new Date("2019-08-09"),
     name: "food",
     price: "7600",
+  },
+  {
+    id: v4(),
+    date: new Date("2019-05-18"),
+    name: "movies",
+    price: "1200",
   },
   {
     id: v4(),

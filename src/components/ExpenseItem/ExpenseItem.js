@@ -3,7 +3,15 @@ import PropTypes from "prop-types";
 import Calender from "./Calender";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
-function ExpenseItem({ day, month, year, name, price }) {
+function ExpenseItem({ id, day, month, year, name, price, onEdit, onTrash }) {
+  const editHandler = () => {
+    console.log("edit icon was clicked!");
+  };
+
+  const trashHandler = () => {
+    //console.log(`item ${id}`);
+    onTrash(id);
+  };
   return (
     <div
       className="
@@ -38,17 +46,23 @@ function ExpenseItem({ day, month, year, name, price }) {
                   me-1
                 "
           >
-            {"$" + price}
+            {"$ " + price}
           </div>
           <div
             className="position-absolute d-flex  icons-box"
             style={{ top: "3.5rem", right: "1.5rem" }}
           >
             <div className="w-50">
-              <FaEdit className="expense-item-icon edit-icon" />
+              <FaEdit
+                className="expense-item-icon edit-icon"
+                onClick={editHandler}
+              />
             </div>
             <div className=" w-50">
-              <FaTrashAlt className="expense-item-icon trash-icon" />
+              <FaTrashAlt
+                className="expense-item-icon trash-icon"
+                onClick={trashHandler}
+              />
             </div>
           </div>
         </div>
