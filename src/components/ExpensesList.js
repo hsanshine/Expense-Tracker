@@ -28,7 +28,13 @@ function ExpensesList(props) {
       {/* <!--  expenses list    --> */}
       <div className="d-flex flex-column justify-content-around text-light">
         {/* expense item */}
-        {items}
+        {items.length ? (
+          items
+        ) : (
+          <div className="text-primary fw-bold">
+            <p> No Items to display</p>
+          </div>
+        )}
       </div>
     </div>
   );

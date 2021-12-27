@@ -1,8 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Calender from "./Calender";
-import { FaEdit, FaBeer, FaTrashAlt } from "react-icons/fa";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
-function ExpenseItem(props) {
+function ExpenseItem({ day, month, year, name, price }) {
   return (
     <div
       className="
@@ -16,9 +17,9 @@ function ExpenseItem(props) {
             "
     >
       {/* <!--      calender    --> */}
-      <Calender day={props.day} month={props.month} year={props.year} />
+      <Calender day={day} month={month} year={year} />
       {/* <!--      items name    --> */}
-      <div className="fw-bold col m-auto text-capitalize"> {props.name}</div>
+      <div className="fw-bold col m-auto text-capitalize"> {name}</div>
       {/* <!--    item price      --> */}
 
       <div className=" col my-auto position-relative">
@@ -37,10 +38,10 @@ function ExpenseItem(props) {
                   me-1
                 "
           >
-            {"$" + props.price}
+            {"$" + price}
           </div>
           <div
-            class="position-absolute d-flex  icons-box"
+            className="position-absolute d-flex  icons-box"
             style={{ top: "3.5rem", right: "1.5rem" }}
           >
             <div className="w-50">
@@ -55,5 +56,13 @@ function ExpenseItem(props) {
     </div>
   );
 }
+
+ExpenseItem.propTypes = {
+  day: PropTypes.number,
+  month: PropTypes.number,
+  year: PropTypes.number,
+  name: PropTypes.string,
+  price: PropTypes.string,
+};
 
 export default ExpenseItem;

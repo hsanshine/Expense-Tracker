@@ -68,11 +68,11 @@ function App() {
         )}
         <FilterSection
           onFilterChange={onFilterYearChange}
-          intialSelection={defaultYear}
+          currenSelection={defaultYear}
         />
 
         <ExpensesList expenses={filteredEntries} />
-        <ExpensesChart displayYear={filterYear} />
+        {/* <ExpensesChart displayYear={filterYear} /> */}
       </div>
     </div>
   );
