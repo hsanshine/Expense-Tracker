@@ -6,4 +6,7 @@ const filterEntries = (entriesArray, Year) => {
   return results;
 };
 
+// const compareDates = (date1, date2){
+
+// }
 export { filterEntries };

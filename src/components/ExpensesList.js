@@ -3,6 +3,7 @@ import ExpenseItem from "./ExpenseItem/ExpenseItem";
 import { filterEntries } from "../helpers";
 
 function ExpensesList({ expenses, displayYear }) {
+  expenses.sort((a, b) => b.date - a.date);
   let filteredExpenses = filterEntries(expenses, displayYear);
   let items = filteredExpenses.map((item) => {
     let key = item.id;
