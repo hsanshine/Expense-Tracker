@@ -1,3 +1,8 @@
+/*************************** color variables ****************************/
+:root {
+  --blue: #0d6efd;
+  --red: #dc3545;
+}
 /*************************** main body css****************************/
 .main {
   min-width: 31.25rem;
@@ -66,10 +71,10 @@
   font-size: 1.2rem;
 }
 .edit-icon:active {
-  color: blue;
+  color: var(--blue);
 }
 .trash-icon:active {
-  color: red;
+  color: var(--red);
 }
 
 /******************************* calendar css****************************/
