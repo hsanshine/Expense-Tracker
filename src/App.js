@@ -5,6 +5,8 @@ import FilterSection from "./components/FilterSection";
 import ExpensesChart from "./components/ExpenseChart/ExpensesChart";
 import ExpensesList from "./components/ExpensesList";
 import AddButton from "./components/AddButton";
+import TrashModal from "./components/ExpenseItem/TrashModal";
+
 import { seed } from "./seed";
 
 import { v4 } from "uuid";
@@ -22,9 +24,17 @@ function App() {
   // for year choosen in filter, we start at 2019
   const [filterYear, setFilterYear] = useState(initialYear);
 
+  //boolean for showing modal or not
+  const [showModal, setShowModal] = useState(false);
+
+  //id of item to be deleted
+  const [deleteId, setDeleteId] = useState("");
+
+  //name of item to be deleted
+  const [trashName, setTrashName] = useState("");
+
   // when filter is changed
   const filterChangeHandler = (newYear) => {
-    // setFilteredEntries(() => filterEntries(entries, Number(newYear)));
     setFilterYear(newYear);
   };
 
@@ -51,13 +61,26 @@ function App() {
     console.log("item was editing, app.js");
   };
 
-  // trashing handler function
-  const trashHandler = (id) => {
-    console.log(`item ${id}`);
-    //search for it in entries and delete
-    setEntries((entries) => entries.filter((entry) => entry.id !== id));
-    console.log("item was deleted!");
+  // trashing click handler function
+  const trashClickHandler = (id) => {
+    setShowModal(!showModal);
+    setDeleteId(id);
+    setTrashName(findItemName(id));
   };
+
+  // trashing confirm handler function
+  const trashConfirmHandler = () => {
+    setShowModal(!showModal);
+    setEntries((entries) => entries.filter((entry) => entry.id !== deleteId));
+  };
+
+  //on close modal
+  const onCloseModalHandler = () => {
+    setShowModal(!showModal);
+  };
+
+  // name of item to be deleted
+  const findItemName = (id) => entries.find((entry) => entry.id === id).name;
 
   return (
     <div>
@@ -79,8 +102,15 @@ function App() {
           expenses={entries}
           displayYear={filterYear}
           onEdit={editHandler}
-          onTrash={trashHandler}
+          onTrash={trashClickHandler}
         />
+        <TrashModal
+          item_name={trashName}
+          openModel={showModal}
+          onCloseModal={onCloseModalHandler}
+          onConfirmDelete={trashConfirmHandler}
+        />
+
         {/* <ExpensesChart displayYear={filterYear} /> */}
       </div>
     </div>

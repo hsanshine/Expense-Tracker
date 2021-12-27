@@ -9,7 +9,6 @@ function ExpenseItem({ id, day, month, year, name, price, onEdit, onTrash }) {
   };
 
   const trashHandler = () => {
-    //console.log(`item ${id}`);
     onTrash(id);
   };
   return (
