@@ -40,11 +40,15 @@ function ExpenseItem(props) {
             {"$" + props.price}
           </div>
           <div
-            class="position-absolute"
-            style={{ top: "3.5rem", right: "2.5rem" }}
+            class="position-absolute d-flex  icons-box"
+            style={{ top: "3.5rem", right: "1.5rem" }}
           >
-            <FaEdit className="me-3 expense-item-icon edit-icon" />
-            <FaTrashAlt className="ms-auto expense-item-icon trash-icon" />
+            <div className="w-50">
+              <FaEdit className="expense-item-icon edit-icon" />
+            </div>
+            <div className=" w-50">
+              <FaTrashAlt className="expense-item-icon trash-icon" />
+            </div>
           </div>
         </div>
       </div>
