@@ -32,7 +32,7 @@ export const seed = [
   },
   {
     id: v4(),
-    date: new Date("2022-09-7"),
+    date: new Date("2022-05-07"),
     name: "udemy-courses",
     price: "6000",
   },

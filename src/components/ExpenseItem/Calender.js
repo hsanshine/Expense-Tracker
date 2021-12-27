@@ -2,6 +2,7 @@ import React from "react";
 import { monthName } from "../../helpers";
 
 function Calender({ year, day, month }) {
+  if (day < 10) day = "0" + day;
   return (
     <div
       className="

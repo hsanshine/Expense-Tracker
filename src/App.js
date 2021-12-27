@@ -48,7 +48,7 @@ function App() {
 
   return (
     <div>
-      <div className="main container mt-3 bg-light">
+      <div className="main container mt-3 pb-3 bg-light">
         <NavBar />
         {!showForm && <AddButton onFormToggle={formToggleHandler} />}
         {showForm && (
