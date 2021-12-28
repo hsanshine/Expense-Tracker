@@ -6,6 +6,7 @@ import ExpensesChart from "./components/ExpenseChart/ExpensesChart";
 import ExpensesList from "./components/ExpensesList";
 import AddButton from "./components/AddButton";
 import TrashModal from "./components/ExpenseItem/TrashModal";
+import EditModal from "./components/ExpenseItem/EditModal";
 
 import { seed } from "./seed";
 
@@ -25,14 +26,21 @@ function App() {
   const [filterYear, setFilterYear] = useState(initialYear);
 
   //boolean for showing modal or not
-  const [showModal, setShowModal] = useState(false);
+  const [showTrashModal, setShowTrashModal] = useState(false);
 
   //id of item to be deleted
-  const [deleteId, setDeleteId] = useState("");
+  const [deleteId, setTrashId] = useState("");
 
   //name of item to be deleted
   const [trashName, setTrashName] = useState("");
 
+  // to show or not to show edit modal
+  const [showEditModal, setShowEditModal] = useState(false);
+
+  // // id of item to be edited
+  // const [editId, setEditId] = useState("");
+
+  const [editItem, setEditItem] = useState("");
   // when filter is changed
   const filterChangeHandler = (newYear) => {
     setFilterYear(newYear);
@@ -56,29 +64,54 @@ function App() {
     setShowForm(!showForm);
   };
 
-  // edit handler, should provide edit form
-  const editHandler = () => {
-    console.log("item was editing, app.js");
-  };
-
   // trashing click handler function
-  const trashClickHandler = (id) => {
-    setShowModal(!showModal);
-    setDeleteId(id);
+  const onTrashClickHandler = (id) => {
+    setShowTrashModal(!showTrashModal);
+    setTrashId(id);
     setTrashName(findItemName(id));
   };
 
   // trashing confirm handler function
-  const trashConfirmHandler = () => {
-    setShowModal(!showModal);
+  const onTrashConfirmHandler = () => {
+    setShowTrashModal(!showTrashModal);
     setEntries((entries) => entries.filter((entry) => entry.id !== deleteId));
+    setTrashId("");
+    setTrashName("");
   };
 
   //on close modal
-  const onCloseModalHandler = () => {
-    setShowModal(!showModal);
+  const onCloseTrashModalHandler = () => {
+    setShowTrashModal(!showTrashModal);
   };
 
+  //on edit handler
+  const onEditClickHandler = (id) => {
+    setEditItem(() => entries.find((entry) => entry.id === id));
+    setShowEditModal(!showEditModal);
+  };
+
+  // on closing edit modal
+  const onCloseEditModalHandler = () => {
+    setShowEditModal(!showEditModal);
+  };
+
+  // on finishing editing
+  const onConfirmEditHandler = (editedExpense) => {
+    const newEntry = {
+      id: v4(),
+      date: new Date(editedExpense.date),
+      name: editedExpense.name,
+      price: editedExpense.price,
+    };
+    //add new item to the entries
+    setEntries(() => [...entries, newEntry]);
+    //remove old edited item
+    setEntries((entries) =>
+      entries.filter((entry) => entry.id !== editItem.id)
+    );
+    setFilterYear(new Date(editedExpense.date).getFullYear());
+    setShowEditModal(!showEditModal);
+  };
   // name of item to be deleted
   const findItemName = (id) => entries.find((entry) => entry.id === id).name;
 
@@ -101,14 +134,20 @@ function App() {
         <ExpensesList
           expenses={entries}
           displayYear={filterYear}
-          onEdit={editHandler}
-          onTrash={trashClickHandler}
+          onEdit={onEditClickHandler}
+          onTrash={onTrashClickHandler}
         />
         <TrashModal
           item_name={trashName}
-          openModel={showModal}
-          onCloseModal={onCloseModalHandler}
-          onConfirmDelete={trashConfirmHandler}
+          openModel={showTrashModal}
+          onCloseModal={onCloseTrashModalHandler}
+          onConfirmDelete={onTrashConfirmHandler}
+        />
+        <EditModal
+          edit_item={editItem}
+          openModal={showEditModal}
+          onCloseEditModal={onCloseEditModalHandler}
+          onConfirmEdit={onConfirmEditHandler}
         />
 
         {/* <ExpensesChart displayYear={filterYear} /> */}

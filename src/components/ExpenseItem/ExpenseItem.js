@@ -5,7 +5,8 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 function ExpenseItem({ id, day, month, year, name, price, onEdit, onTrash }) {
   const editHandler = () => {
-    console.log("edit icon was clicked!");
+    // console.log("edit icon was clicked!");
+    onEdit(id);
   };
 
   const trashHandler = () => {

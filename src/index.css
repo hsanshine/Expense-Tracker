@@ -84,3 +84,9 @@
   height: 7.5rem;
   box-sizing: border-box;
 }
+
+/******************************* expense form css****************************/
+.edit-modal {
+  max-width: 50rem;
+  margin: auto;
+}
