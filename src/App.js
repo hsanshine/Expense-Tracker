@@ -143,12 +143,14 @@ function App() {
           onCloseModal={onCloseTrashModalHandler}
           onConfirmDelete={onTrashConfirmHandler}
         />
-        <EditModal
-          edit_item={editItem}
-          openModal={showEditModal}
-          onCloseEditModal={onCloseEditModalHandler}
-          onConfirmEdit={onConfirmEditHandler}
-        />
+        {showEditModal && (
+          <EditModal
+            edit_item={editItem}
+            openModal={showEditModal}
+            onCloseEditModal={onCloseEditModalHandler}
+            onConfirmEdit={onConfirmEditHandler}
+          />
+        )}
 
         {/* <ExpensesChart displayYear={filterYear} /> */}
       </div>

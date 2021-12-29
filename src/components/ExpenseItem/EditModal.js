@@ -1,5 +1,4 @@
 import React from "react";
-import { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 import ExpenseForm from "../ExpenseForm";
 
@@ -9,20 +8,7 @@ const EditModal = ({
   onCloseEditModal,
   onConfirmEdit,
 }) => {
-  // i dont think these variables should be state as they are just initial variables to the form update that you want to do.
-  const [day, setDay] = useState("");
-  const [month, setMonth] = useState("");
-  const [year, setYear] = useState("");
-
-  useEffect(() => {
-    if (openModal) {
-      let monthValue = String(edit_item.date.getMonth() + 1);
-      setDay(String(edit_item.date.getDate()).padStart(2, "0"));
-      setMonth(monthValue.padStart(2, "0"));
-      setYear(edit_item.date.getFullYear());
-      // console.log(`${year}-${month}-${day}`);
-    }
-  }, [openModal, day, edit_item.date, month, year]);
+  const [year, month, day] = formatDate(edit_item.date);
 
   return (
     <ReactModal isOpen={openModal} ariaHideApp={false} className="edit-modal">
@@ -44,7 +30,7 @@ const EditModal = ({
             onFormSubmit={onConfirmEdit}
             name={edit_item.name}
             price={edit_item.price}
-            date={`${year}-${"01"}-${day}`}
+            date={`${year}-${month}-${day}`}
             id={edit_item.id}
           />
         </div>
@@ -53,6 +39,13 @@ const EditModal = ({
   );
 };
 
+const formatDate = (itemDate) => {
+  const day = String(itemDate.getDate()).padStart(2, "0");
+  const monthValue = String(itemDate.getMonth() + 1);
+  const month = monthValue.padStart(2, "0");
+  const year = itemDate.getFullYear();
+  return [year, month, day];
+};
 // EditModal.defaultProps = {
 //   edit_item: {
 //     name: "sample name",
