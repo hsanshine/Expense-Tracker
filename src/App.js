@@ -144,7 +144,7 @@ function App() {
           userSelection={filterYear}
         />
 
-        {alertType && (
+        {alertType.length > 0 && (
           <AlertMsg alertType={alertType} onHide={handleHideAlert} />
         )}
 
