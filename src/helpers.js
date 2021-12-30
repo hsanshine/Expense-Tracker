@@ -27,4 +27,15 @@ const monthName = (month) => {
   ];
   return monthNames[Number(month)];
 };
-export { filterEntries, monthName };
+
+const dataPoints = (objArray) => {
+  const finalArray = new Array(12).fill(0); //intialized with zeros.
+  for (const entry of objArray) {
+    let month = Number(new Date(entry.date).getMonth());
+
+    finalArray[month] = finalArray[month] + Number(entry.price);
+  }
+
+  return finalArray;
+};
+export { filterEntries, monthName, dataPoints };

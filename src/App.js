@@ -169,7 +169,7 @@ function App() {
           />
         )}
 
-        <ExpensesChart displayYear={filterYear} />
+        <ExpensesChart expenses={entries} displayYear={filterYear} />
       </div>
     </div>
   );

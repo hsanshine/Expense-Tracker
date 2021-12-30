@@ -14,7 +14,7 @@ export const seed = [
   },
   {
     id: v4(),
-    date: new Date("2019-08-09"),
+    date: new Date("2020-08-09"),
     name: "food",
     price: "7600",
   },

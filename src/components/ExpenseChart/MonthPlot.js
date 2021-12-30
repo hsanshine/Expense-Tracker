@@ -1,7 +1,8 @@
 import React from "react";
+import { monthName } from "../../helpers";
 
-function MonthPlot(props) {
-  let plotHeight = (props.value / props.maxValue) * 100 + "%";
+function MonthPlot({ month, value, maxValue }) {
+  let plotHeight = maxValue ? (value / maxValue) * 100 + "%" : 0;
   return (
     <div className="mx-auto d-flex flex-column align-items-center month">
       {/* <!--    outer bar      --> */}
@@ -26,7 +27,7 @@ function MonthPlot(props) {
         ></div>
       </div>
       <div className="mx-auto text-dark fs-6 month">
-        <span className="full-month"> {props.monthName}</span>
+        <span className="full-month"> {monthName(month)}</span>
       </div>
     </div>
   );
