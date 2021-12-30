@@ -7,6 +7,7 @@ import ExpensesList from "./components/ExpensesList";
 import AddButton from "./components/AddButton";
 import TrashModal from "./components/ExpenseItem/TrashModal";
 import EditModal from "./components/ExpenseItem/EditModal";
+import AlertMsg from "./AlertMsg";
 
 import { seed } from "./seed";
 
@@ -36,6 +37,10 @@ function App() {
 
   // to show or not to show edit modal
   const [showEditModal, setShowEditModal] = useState(false);
+
+  // to show alerts
+  //const [showAlert, setShowAlert] = useState(true);
+  const [alertType, setAlertType] = useState("");
 
   // // id of item to be edited
   // const [editId, setEditId] = useState("");
@@ -77,6 +82,8 @@ function App() {
     setEntries((entries) => entries.filter((entry) => entry.id !== deleteId));
     setTrashId("");
     setTrashName("");
+    //setShowAlert();
+    setAlertType("trash");
   };
 
   //on close modal
@@ -111,6 +118,12 @@ function App() {
     );
     setFilterYear(new Date(editedExpense.date).getFullYear());
     setShowEditModal(!showEditModal);
+    setAlertType("edit");
+  };
+
+  //on hide alert
+  const handleHideAlert = () => {
+    setAlertType("");
   };
   // name of item to be deleted
   const findItemName = (id) => entries.find((entry) => entry.id === id).name;
@@ -130,6 +143,10 @@ function App() {
           onFilterChange={filterChangeHandler}
           userSelection={filterYear}
         />
+
+        {alertType && (
+          <AlertMsg alertType={alertType} onHide={handleHideAlert} />
+        )}
 
         <ExpensesList
           expenses={entries}
@@ -152,7 +169,7 @@ function App() {
           />
         )}
 
-        {/* <ExpensesChart displayYear={filterYear} /> */}
+        <ExpensesChart displayYear={filterYear} />
       </div>
     </div>
   );

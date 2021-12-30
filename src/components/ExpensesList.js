@@ -38,7 +38,7 @@ function ExpensesList({ expenses, displayYear, onEdit, onTrash }) {
           items
         ) : (
           <div className="text-primary fw-bold">
-            <p> No Items to display</p>
+            <p> New expenses will show up here.</p>
           </div>
         )}
       </div>
