@@ -1,7 +1,7 @@
 //helper function to filter entries
 const filterEntries = (entriesArray, Year) => {
   let results = entriesArray.filter(
-    (entry) => entry.date.getFullYear() === Number(Year)
+    (entry) => new Date(entry.date).getFullYear() === Number(Year)
   );
   return results;
 };
@@ -38,4 +38,13 @@ const dataPoints = (objArray) => {
 
   return finalArray;
 };
-export { filterEntries, monthName, dataPoints };
+
+const processDate = (date) => {
+  const dateObj = new Date(date);
+  const day = dateObj.getDate();
+  const month = dateObj.getMonth();
+  const year = dateObj.getFullYear();
+  return [year, month, day];
+};
+
+export { filterEntries, monthName, dataPoints, processDate };

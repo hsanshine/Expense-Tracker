@@ -8,7 +8,7 @@ const EditModal = ({
   onCloseEditModal,
   onConfirmEdit,
 }) => {
-  const [year, month, day] = formatDate(edit_item.date);
+  const [year, month, day] = formatDate(new Date(edit_item.date));
 
   return (
     <ReactModal isOpen={openModal} ariaHideApp={false} className="edit-modal">

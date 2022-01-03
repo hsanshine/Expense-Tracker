@@ -1,17 +1,15 @@
 import React from "react";
 import ExpenseItem from "./ExpenseItem/ExpenseItem";
-import { filterEntries } from "../helpers";
+import { filterEntries, processDate } from "../helpers";
 
 function ExpensesList({ expenses, displayYear, onEdit, onTrash }) {
   expenses.sort((a, b) => a.date - b.date);
-  let filteredExpenses = filterEntries(expenses, displayYear);
-  let items = filteredExpenses.map((item) => {
-    let key = item.id;
-    let day = item.date.getDate();
-    let year = item.date.getFullYear();
-    let month = item.date.getMonth();
-    let price = item.price;
-    let name = item.name;
+  const filteredExpenses = filterEntries(expenses, displayYear);
+  const items = filteredExpenses.map((item) => {
+    const key = item.id;
+    const [year, month, day] = processDate(item.date);
+    const price = item.price;
+    const name = item.name;
     return (
       <ExpenseItem
         id={item.id}

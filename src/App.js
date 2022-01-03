@@ -9,16 +9,16 @@ import TrashModal from "./components/ExpenseItem/TrashModal";
 import EditModal from "./components/ExpenseItem/EditModal";
 import AlertMsg from "./AlertMsg";
 
-import { seed } from "./seed";
-
 import { v4 } from "uuid";
 
+let seedData = require("./seed.json");
+console.log(seedData);
 function App() {
   //show the current year data on start
   let initialYear = new Date().getFullYear().toString();
 
   //initial seed data to state
-  const [entries, setEntries] = useState(seed);
+  const [entries, setEntries] = useState(seedData);
 
   // variable to show the form or not
   const [showForm, setShowForm] = useState(false);
@@ -105,17 +105,20 @@ function App() {
   // on finishing editing
   const onConfirmEditHandler = (editedExpense) => {
     const newEntry = {
-      id: v4(),
+      id: editedExpense.id,
       date: new Date(editedExpense.date),
       name: editedExpense.name,
       price: editedExpense.price,
     };
     //add new item to the entries
-    setEntries(() => [...entries, newEntry]);
-    //remove old edited item
-    setEntries((entries) =>
-      entries.filter((entry) => entry.id !== editItem.id)
-    );
+    setEntries((oldEntries) => {
+      const newEntries = oldEntries.map((entry) => {
+        if (entry.id === newEntry.id) return newEntry;
+        else return entry;
+      });
+      return newEntries;
+    });
+
     setFilterYear(new Date(editedExpense.date).getFullYear());
     setShowEditModal(!showEditModal);
     setAlertType("edit");
