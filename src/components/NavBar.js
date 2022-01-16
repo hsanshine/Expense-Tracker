@@ -4,7 +4,7 @@ const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="#action04">
           Expense Tracker
         </a>
         <button
@@ -20,16 +20,16 @@ const NavBar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav ms-auto">
-            <a className="nav-link active" aria-current="page" href="#">
+            <a className="nav-link active" aria-current="page" href="#action05">
               Home
             </a>
-            <a className="nav-link" href="#">
+            <a className="nav-link" href="#action-1">
               All Expenses
             </a>
-            <a className="nav-link" href="#">
+            <a className="nav-link" href="#action-2">
               Analysis
             </a>
-            <a className="nav-link" href="#">
+            <a className="nav-link" href="#action-3">
               Contact Us
             </a>
           </div>

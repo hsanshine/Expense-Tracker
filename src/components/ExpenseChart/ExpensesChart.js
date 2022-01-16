@@ -1,6 +1,6 @@
 import React from "react";
 import MonthPlot from "./MonthPlot";
-import { useState, useEffect } from "react";
+
 import { filterEntries, dataPoints } from "../../helpers";
 
 function ExpensesChart({ expenses, displayYear }) {
