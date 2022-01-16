@@ -1,7 +1,17 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Calender from "./Calender";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
-function ExpenseItem(props) {
+function ExpenseItem({ id, day, month, year, name, price, onEdit, onTrash }) {
+  const editHandler = () => {
+    // console.log("edit icon was clicked!");
+    onEdit(id);
+  };
+
+  const trashHandler = () => {
+    onTrash(id);
+  };
   return (
     <div
       className="
@@ -15,14 +25,15 @@ function ExpenseItem(props) {
             "
     >
       {/* <!--      calender    --> */}
-      <Calender day={props.day} month={props.month} year={props.year} />
+      <Calender day={day} month={month} year={year} />
       {/* <!--      items name    --> */}
-      <div className="fw-bold col m-auto text-capitalize"> {props.name}</div>
+      <div className="fw-bold col m-auto text-capitalize"> {name}</div>
       {/* <!--    item price      --> */}
 
-      <div className="col my-auto ms-auto me-2 d-flex justify-content-end">
-        <div
-          className="
+      <div className=" col my-auto position-relative">
+        <div className="ms-auto my-auto ">
+          <div
+            className="
                   fw-bold
                   py-2
                   d-flex
@@ -31,13 +42,41 @@ function ExpenseItem(props) {
                   border border-2 border-light
                   rounded-pill
                   expense-price
+                  ms-auto
+                  me-1
                 "
-        >
-          {"$" + props.price}
+          >
+            {"$ " + price}
+          </div>
+          <div
+            className="position-absolute d-flex  icons-box"
+            style={{ top: "3.5rem", right: "1.5rem" }}
+          >
+            <div className="w-50">
+              <FaEdit
+                className="expense-item-icon edit-icon"
+                onClick={editHandler}
+              />
+            </div>
+            <div className=" w-50">
+              <FaTrashAlt
+                className="expense-item-icon trash-icon"
+                onClick={trashHandler}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 }
+
+ExpenseItem.propTypes = {
+  day: PropTypes.number,
+  month: PropTypes.number,
+  year: PropTypes.number,
+  name: PropTypes.string,
+  price: PropTypes.string,
+};
 
 export default ExpenseItem;

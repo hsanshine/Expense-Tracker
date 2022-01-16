@@ -1,93 +1,67 @@
 import { useState } from "react";
-import "./App.css";
 import NavBar from "./components/NavBar";
 import ExpenseForm from "./components/ExpenseForm";
 import FilterSection from "./components/FilterSection";
 import ExpensesChart from "./components/ExpenseChart/ExpensesChart";
 import ExpensesList from "./components/ExpensesList";
 import AddButton from "./components/AddButton";
+import TrashModal from "./components/ExpenseItem/TrashModal";
+import EditModal from "./components/ExpenseItem/EditModal";
+import AlertMsg from "./AlertMsg";
+
 import { v4 } from "uuid";
 
-let seed = [
-  {
-    id: v4(),
-    date: new Date("2019-12-17"),
-    name: "books",
-    price: "50",
-  },
-  {
-    id: v4(),
-    date: new Date("2020-10-17"),
-    name: "phone",
-    price: "1000",
-  },
-  {
-    id: v4(),
-    date: new Date("2021-06-17"),
-    name: "partying",
-    price: "200",
-  },
-  {
-    id: v4(),
-    date: new Date("2022-02-17"),
-    name: "rent",
-    price: "2000",
-  },
-  {
-    id: v4(),
-    date: new Date("2021-01-17"),
-    name: "dates",
-    price: "300",
-  },
-];
+let seedData = require("./seed.json");
+console.log(seedData);
 function App() {
-  const defaultYear = new Date().getFullYear().toString();
-  //initial seed data to state
-  const [entries, setEntries] = useState(seed);
+  //show the current year data on start
+  let initialYear = new Date().getFullYear().toString();
 
-  // for year choosen in filter, we start at 2019
-  const [filterYear, setFilterYear] = useState(defaultYear);
+  //initial seed data to state
+  const [entries, setEntries] = useState(seedData);
 
   // variable to show the form or not
   const [showForm, setShowForm] = useState(false);
 
-  //helper function to filter entries
-  const getFilterEntries = (Year) => {
-    console.log(`filtering for ${Year}`);
-    let results = entries.filter(
-      (entry) => entry.date.getFullYear() === Number(Year)
-    );
-    console.log(results);
-    return results;
-  };
+  // for year choosen in filter, we start at 2019
+  const [filterYear, setFilterYear] = useState(initialYear);
 
-  // array for filtered entries
-  const [filteredEntries, setFilteredEntries] = useState(() =>
-    getFilterEntries(filterYear)
-  );
+  //boolean for showing modal or not
+  const [showTrashModal, setShowTrashModal] = useState(false);
 
+  //id of item to be deleted
+  const [deleteId, setTrashId] = useState("");
+
+  //name of item to be deleted
+  const [trashName, setTrashName] = useState("");
+
+  // to show or not to show edit modal
+  const [showEditModal, setShowEditModal] = useState(false);
+
+  // to show alerts
+  //const [showAlert, setShowAlert] = useState(true);
+  const [alertType, setAlertType] = useState("");
+
+  // // id of item to be edited
+  // const [editId, setEditId] = useState("");
+
+  const [editItem, setEditItem] = useState("");
   // when filter is changed
-  const onFilterYearChange = (newYear) => {
-    console.log(typeof newYear);
+  const filterChangeHandler = (newYear) => {
     setFilterYear(newYear);
-    setFilteredEntries(() => getFilterEntries(Number(newYear)));
-    console.log(`filter year changed ${newYear}`);
   };
 
   //on add new expense
-  const onAddNew = (newExpense) => {
+  const addNewHandler = (newExpense) => {
     const newEntry = {
       id: v4(),
       date: new Date(newExpense.date),
       name: newExpense.name,
       price: newExpense.price,
     };
-    setEntries([...entries, newEntry]);
+
+    setEntries(() => [...entries, newEntry]);
     setFilterYear(newEntry.date.getFullYear());
-    setFilteredEntries(() =>
-      getFilterEntries(Number(newEntry.date.getFullYear()))
-    );
-    console.log(newEntry);
   };
 
   // form toggle handler
@@ -95,24 +69,110 @@ function App() {
     setShowForm(!showForm);
   };
 
+  // trashing click handler function
+  const onTrashClickHandler = (id) => {
+    setShowTrashModal(!showTrashModal);
+    setTrashId(id);
+    setTrashName(findItemName(id));
+  };
+
+  // trashing confirm handler function
+  const onTrashConfirmHandler = () => {
+    setShowTrashModal(!showTrashModal);
+    setEntries((entries) => entries.filter((entry) => entry.id !== deleteId));
+    setTrashId("");
+    setTrashName("");
+    //setShowAlert();
+    setAlertType("trash");
+  };
+
+  //on close modal
+  const onCloseTrashModalHandler = () => {
+    setShowTrashModal(!showTrashModal);
+  };
+
+  //on edit handler
+  const onEditClickHandler = (id) => {
+    setEditItem(() => entries.find((entry) => entry.id === id));
+    setShowEditModal(!showEditModal);
+  };
+
+  // on closing edit modal
+  const onCloseEditModalHandler = () => {
+    setShowEditModal(!showEditModal);
+  };
+
+  // on finishing editing
+  const onConfirmEditHandler = (editedExpense) => {
+    const newEntry = {
+      id: editedExpense.id,
+      date: new Date(editedExpense.date),
+      name: editedExpense.name,
+      price: editedExpense.price,
+    };
+    //add new item to the entries
+    setEntries((oldEntries) => {
+      const newEntries = oldEntries.map((entry) => {
+        if (entry.id === newEntry.id) return newEntry;
+        else return entry;
+      });
+      return newEntries;
+    });
+
+    setFilterYear(new Date(editedExpense.date).getFullYear());
+    setShowEditModal(!showEditModal);
+    setAlertType("edit");
+  };
+
+  //on hide alert
+  const handleHideAlert = () => {
+    setAlertType("");
+  };
+  // name of item to be deleted
+  const findItemName = (id) => entries.find((entry) => entry.id === id).name;
+
   return (
     <div>
-      <div className="main container mt-3 bg-light">
+      <div className="main container mt-3 pb-3 bg-light">
         <NavBar />
         {!showForm && <AddButton onFormToggle={formToggleHandler} />}
         {showForm && (
           <ExpenseForm
-            onFormSubmit={onAddNew}
+            onFormSubmit={addNewHandler}
             onFormClose={formToggleHandler}
           />
         )}
         <FilterSection
-          onFilterChange={onFilterYearChange}
-          intialSelection={filterYear}
+          onFilterChange={filterChangeHandler}
+          userSelection={filterYear}
         />
 
-        <ExpensesList expenses={filteredEntries} />
-        <ExpensesChart displayYear={filterYear} />
+        {alertType.length > 0 && (
+          <AlertMsg alertType={alertType} onHide={handleHideAlert} />
+        )}
+
+        <ExpensesList
+          expenses={entries}
+          displayYear={filterYear}
+          onEdit={onEditClickHandler}
+          onTrash={onTrashClickHandler}
+        />
+        <TrashModal
+          item_name={trashName}
+          openModel={showTrashModal}
+          onCloseModal={onCloseTrashModalHandler}
+          onConfirmDelete={onTrashConfirmHandler}
+        />
+        {showEditModal && (
+          <EditModal
+            edit_item={editItem}
+            openModal={showEditModal}
+            onCloseEditModal={onCloseEditModalHandler}
+            onConfirmEdit={onConfirmEditHandler}
+          />
+        )}
+
+        <ExpensesChart expenses={entries} displayYear={filterYear} />
       </div>
     </div>
   );

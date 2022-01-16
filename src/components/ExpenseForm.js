@@ -1,10 +1,10 @@
 import { useState } from "react";
 import React from "react";
 
-function ExpenseForm(props) {
-  const [itemName, setItemName] = useState("");
-  const [itemPrice, setItemPrice] = useState("");
-  const [itemDate, setItemDate] = useState("");
+function ExpenseForm({ onFormClose, onFormSubmit, name, price, date, id }) {
+  const [itemName, setItemName] = useState(name);
+  const [itemPrice, setItemPrice] = useState(price);
+  const [itemDate, setItemDate] = useState(date);
 
   const itemNameHandler = (event) => {
     setItemName(event.target.value);
@@ -22,7 +22,7 @@ function ExpenseForm(props) {
     setItemName("");
     setItemPrice("");
     setItemDate("");
-    props.onFormClose();
+    onFormClose();
     // console.log("form submit was canceled");
   };
   const onSubmitHandler = (event) => {
@@ -31,21 +31,25 @@ function ExpenseForm(props) {
       name: itemName,
       price: itemPrice,
       date: itemDate,
+      id: id,
     };
     //console.log(newExpense);
-    props.onFormSubmit(newExpense);
-    props.onFormClose();
+    onFormSubmit(newExpense);
+    onFormClose();
     setItemName("");
     setItemPrice("");
     setItemDate("");
     // console.log("form was submited");
   };
   return (
-    <div className="row border border-primary rounded-3 border-2 m-3">
+    <div className="row border border-primary rounded-3 border-2 m-3 expense-form">
       <form className="col g-3 p-4" onSubmit={onSubmitHandler}>
-        <h2 className="mb-3 fs-2">Expenses form</h2>
+        <h2 className="mb-3 fs-2">
+          {" "}
+          {id ? "Edit Expense Form" : "New Expense Form"}
+        </h2>
         <div className="row g-3 mb-3">
-          <div className="col-sm-6">
+          <div className="col-md-6">
             <input
               type="text"
               className="form-control"
@@ -56,7 +60,7 @@ function ExpenseForm(props) {
               required
             />
           </div>
-          <div className="col-sm-6">
+          <div className="col-md-6">
             <div className="input-group col-md-6 mb-3">
               <span className="input-group-text">Price $</span>
               <input
@@ -74,17 +78,18 @@ function ExpenseForm(props) {
         </div>
 
         <div className="row">
-          <div className="col-sm-6 mb-3">
+          <div className="col-md-6 mb-3">
             <input
               type="date"
               className="form-control"
               id="expense-date"
+              placeholder={itemDate}
               value={itemDate}
               onInput={itemDateHandler}
               required
             />
           </div>
-          <div className="col-sm-6 mb-3 row">
+          <div className="col-md-6 mb-3 row">
             <button
               className="btn btn-primary col m-1"
               type="button"
@@ -98,7 +103,7 @@ function ExpenseForm(props) {
               type="submit"
               // onClick={onSubmitHandler}
             >
-              Add New Expense
+              {id ? "Confirm" : "Add New Expense"}
             </button>
           </div>
         </div>
@@ -106,5 +111,12 @@ function ExpenseForm(props) {
     </div>
   );
 }
+
+// ExpenseForm.defaultProps = {
+//   name: "sample item",
+//   price: 2,
+//   date: "1995-10-30",
+//   id: 3,
+// };
 
 export default ExpenseForm;
