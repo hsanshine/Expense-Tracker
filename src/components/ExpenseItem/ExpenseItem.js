@@ -20,7 +20,7 @@ function ExpenseItem({ id, day, month, year, name, price, onEdit, onTrash }) {
       </div>
       {/* item information */}
       <div className="item-info">
-        <div className="item-name"> {name}</div>
+        <div className="item-name text-capitalize"> {name}</div>
         <div className="item-price"> {"$ " + price}</div>
         <span className="item-icons">
           <FaEdit className="item-icon edit-icon" onClick={editHandler} />

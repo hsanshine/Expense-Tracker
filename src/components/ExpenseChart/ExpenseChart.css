@@ -5,6 +5,8 @@
   margin-top: 10px;
   border-radius: 10px;
   padding: 5px 10px;
+  background: var(--blue);
+  color: var(--white);
 }
 
 .chart-header {

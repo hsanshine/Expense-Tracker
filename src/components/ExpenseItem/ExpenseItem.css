@@ -29,6 +29,12 @@
   flex: 2;
   text-align: center;
 }
+@media (min-width: 500px) {
+  .item-name {
+    text-align: justify;
+    margin-left: 4rem;
+  }
+}
 .item-price {
   /* margin-left: auto; */
   flex: 1;
