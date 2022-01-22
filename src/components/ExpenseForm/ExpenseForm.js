@@ -1,6 +1,6 @@
 import { useState } from "react";
 import React from "react";
-
+import "./ExpenseForm.css";
 function ExpenseForm({ onFormClose, onFormSubmit, name, price, date, id }) {
   const [itemName, setItemName] = useState(name);
   const [itemPrice, setItemPrice] = useState(price);
@@ -42,14 +42,14 @@ function ExpenseForm({ onFormClose, onFormSubmit, name, price, date, id }) {
     // console.log("form was submited");
   };
   return (
-    <div className="row border border-primary rounded-3 border-2 m-3 expense-form">
-      <form className="col g-3 p-4" onSubmit={onSubmitHandler}>
-        <h2 className="mb-3 fs-2">
+    <div className="expense-form">
+      <form className="" onSubmit={onSubmitHandler}>
+        <h2 className="expense-form-heading">
           {" "}
           {id ? "Edit Expense Form" : "New Expense Form"}
         </h2>
-        <div className="row g-3 mb-3">
-          <div className="col-md-6">
+        <div className="expense-form-fields">
+          <div className="expense-form-input">
             <input
               type="text"
               className="form-control"
@@ -60,38 +60,39 @@ function ExpenseForm({ onFormClose, onFormSubmit, name, price, date, id }) {
               required
             />
           </div>
-          <div className="col-md-6">
-            <div className="input-group col-md-6 mb-3">
-              <span className="input-group-text">Price $</span>
-              <input
-                type="number"
-                min="0"
-                className="form-control"
-                aria-label="Amount (to the nearest dollar)"
-                value={itemPrice}
-                onChange={itemPriceHandler}
-                required
-              />
-              <span className="input-group-text">.00</span>
-            </div>
-          </div>
-        </div>
 
-        <div className="row">
-          <div className="col-md-6 mb-3">
+          <div className="input-group expense-form-input price-input">
+            <span className="input-group-text">Price $</span>
+            <input
+              type="number"
+              min="0"
+              className="form-control"
+              aria-label="Amount (to the nearest dollar)"
+              value={itemPrice}
+              onChange={itemPriceHandler}
+              required
+            />
+            <span className="input-group-text">.00</span>
+          </div>
+
+          <div className="expense-form-input date-input">
+            <label htmlFor="expense-date">Date:</label>
             <input
               type="date"
               className="form-control"
               id="expense-date"
-              placeholder={itemDate}
+              placeholder={id ? itemDate : "Expense Date"}
               value={itemDate}
               onInput={itemDateHandler}
               required
             />
           </div>
-          <div className="col-md-6 mb-3 row">
+        </div>
+
+        <div className="">
+          <div className="expense-form-buttons">
             <button
-              className="btn btn-primary col m-1"
+              className="btn btn-primary"
               type="button"
               value="Input"
               onClick={onCancelhandler}
@@ -99,7 +100,7 @@ function ExpenseForm({ onFormClose, onFormSubmit, name, price, date, id }) {
               Cancel
             </button>
             <button
-              className="btn btn-primary col m-1"
+              className="btn btn-primary"
               type="submit"
               // onClick={onSubmitHandler}
             >

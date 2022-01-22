@@ -1,6 +1,7 @@
 import React from "react";
-import ExpenseItem from "./ExpenseItem/ExpenseItem";
-import { filterEntries, processDate } from "../helpers";
+import ExpenseItem from "../ExpenseItem/ExpenseItem";
+import { filterEntries, processDate } from "../../helpers";
+import "./ExpenseList.css";
 
 function ExpensesList({ expenses, displayYear, onEdit, onTrash }) {
   expenses.sort((a, b) => a.date - b.date);
@@ -26,16 +27,16 @@ function ExpensesList({ expenses, displayYear, onEdit, onTrash }) {
   });
   return (
     //  <!--  expenses -->
-    <div className="row m-3 p-2 border border-3 border-primary rounded-2">
-      <h2 className="m-3 fs-2">Expenses</h2>
+    <div className="expenses">
+      <h2 className="expense-list-heading">Expenses</h2>
 
       {/* <!--  expenses list    --> */}
-      <div className="d-flex flex-column justify-content-around text-light">
+      <div className="expenses-list">
         {/* expense item */}
         {items.length ? (
           items
         ) : (
-          <div className="text-primary fw-bold">
+          <div className="expenses-no-text">
             <p> New expenses will show up here.</p>
           </div>
         )}

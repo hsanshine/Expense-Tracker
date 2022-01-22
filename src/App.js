@@ -1,13 +1,13 @@
 import { useState } from "react";
-import NavBar from "./components/NavBar";
-import ExpenseForm from "./components/ExpenseForm";
-import FilterSection from "./components/FilterSection";
+import NavBar from "./components/NavBar/NavBar";
+import ExpenseForm from "./components/ExpenseForm/ExpenseForm";
+import FilterSection from "./components/FilterSection/FilterSection";
 import ExpensesChart from "./components/ExpenseChart/ExpensesChart";
-import ExpensesList from "./components/ExpensesList";
-import AddButton from "./components/AddButton";
+import ExpensesList from "./components/ExpensesList/ExpensesList";
+import AddButton from "./components/AddButton/AddButton";
 import TrashModal from "./components/ExpenseItem/TrashModal";
 import EditModal from "./components/ExpenseItem/EditModal";
-import AlertMsg from "./AlertMsg";
+import AlertMsg from "./components/AlertMsg/AlertMsg";
 
 import { v4 } from "uuid";
 
@@ -133,8 +133,8 @@ function App() {
 
   return (
     <div>
+      <NavBar />
       <div className="main container mt-3 pb-3 bg-light">
-        <NavBar />
         {!showForm && <AddButton onFormToggle={formToggleHandler} />}
         {showForm && (
           <ExpenseForm

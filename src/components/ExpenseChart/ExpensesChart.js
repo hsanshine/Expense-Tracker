@@ -1,5 +1,6 @@
 import React from "react";
 import MonthPlot from "./MonthPlot";
+import "./ExpenseChart.css";
 
 import { filterEntries, dataPoints } from "../../helpers";
 
@@ -17,12 +18,12 @@ function ExpensesChart({ expenses, displayYear }) {
   });
 
   return (
-    <div className="p-3 m-3 rounded-3 bg-primary text-white">
-      <div className="d-flex">
-        <h2 className="m-3">chart area</h2>
-        <div className="ms-auto my-auto me-3 fw-bold">{displayYear}</div>
+    <div className="chart">
+      <div className="chart-header">
+        <h2>Chart area</h2>
+        <div className="chart-year">{displayYear}</div>
       </div>
-      <div className="bg-warning p-2 chart-background">{chartPlot}</div>
+      <div className="bg-warning chart-background">{chartPlot}</div>
     </div>
   );
 }

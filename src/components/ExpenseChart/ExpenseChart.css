@@ -1,0 +1,86 @@
+.chart {
+  /* color: red; */
+  /* p-3 m-3 rounded-3 bg-primary text-white */
+  border: 3px solid var(--blue);
+  margin-top: 10px;
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+
+.chart-header {
+  display: flex;
+  padding: 10px 10px;
+  align-items: center;
+}
+
+.chart-year {
+  margin-left: auto;
+  font-weight: bold;
+}
+/*************************** chart css****************************/
+
+.chart-background {
+  /* bg-warning p-2 */
+  height: 18.75rem;
+  width: 100%;
+  border-radius: 5px;
+  padding: 2px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: auto;
+}
+.outer-bar {
+  /* max-width: 10%; */
+  height: 90%;
+  box-sizing: border-box;
+}
+.inner-bar {
+  min-width: 0.313rem;
+  /* max-width: 0.625rem; */
+}
+
+.full-month {
+  visibility: hidden;
+  position: absolute;
+}
+
+@media (min-width: 500px) {
+  .short-month {
+    visibility: hidden;
+    position: absolute;
+    /* margin: 0; */
+  }
+
+  .full-month {
+    visibility: visible;
+    margin: 0;
+    position: static;
+  }
+  /* .chart-background {
+    height: 25rem;
+    display: grid;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: auto;
+  } */
+  /* .outer-bar {
+    min-width: 0.313rem;
+    max-width: 25%;
+    height: 90%;
+    box-sizing: border-box;
+  } */
+  /* .inner-bar {
+    height: 88%;
+    min-width: 0.313rem;
+    max-width: 0.625rem;
+  } */
+  /* .short-month {
+    visibility: visible;
+    /* position: absolute; */
+  /* margin: 0;  } */
+
+  /* .full-month {
+    visibility: hidden;
+    position: absolute;
+  } */
+}

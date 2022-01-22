@@ -2,87 +2,41 @@
 :root {
   --blue: #0d6efd;
   --red: #dc3545;
+  --grey: #6c757d;
+  --white: #fff;
 }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif;
+  background: #fff;
+}
+
+body {
+  margin: 0;
+}
+/**************************** body *********************************/
+
+/* body {
+  width: 100vw;
+} */
 /*************************** main body css****************************/
 .main {
-  min-width: 31.25rem;
-  max-width: 60%;
-}
-
-/*************************** chart css****************************/
-
-.chart-background {
-  height: 18.75rem;
+  /* //min-width: 31.25rem; */
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-gap: auto;
+  /* max-width: 60%; */
 }
-.outer-bar {
-  max-width: 25%;
-  height: 90%;
-  box-sizing: border-box;
-}
-.inner-bar {
-  min-width: 5px;
-  max-width: 10px;
-}
-
-.short-month {
-  visibility: hidden;
-  position: absolute;
-}
-@media (max-width: 31.25rem) {
-  .chart-background {
-    height: 25rem;
-    display: grid;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-gap: auto;
-  }
-  .outer-bar {
-    min-width: 5px;
-    max-width: 25%;
-    height: 90%;
-    box-sizing: border-box;
-  }
-  .inner-bar {
-    height: 88%;
-    min-width: 5px;
-    max-width: 10px;
+@media (min-width: 1200px) {
+  .main {
+    width: 60%;
   }
 }
-
-/*************************** expenses list css****************************/
-.expense-price {
-  width: 6.25rem;
-}
-.expense-item {
-  height: 9.375rem;
-}
-
-/******************************* icons box css ****************************/
-.icons-box {
-  width: 4rem;
-}
-
-/******************************* icons css****************************/
-.expense-item-icon:hover {
-  font-size: 1.2rem;
-}
-.edit-icon:active {
-  color: var(--blue);
-}
-.trash-icon:active {
-  color: var(--red);
-}
-
-/******************************* calendar css****************************/
-.calendar {
-  border-radius: 10px;
-  width: 6.25rem;
-  height: 7.5rem;
-  box-sizing: border-box;
+@media (min-width: 2000px) {
+  .main {
+    width: 50%;
+  }
 }
 
 /******************************* expense form css****************************/

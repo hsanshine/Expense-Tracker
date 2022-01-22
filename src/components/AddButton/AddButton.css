@@ -1,0 +1,8 @@
+.add-button {
+  /* d-grid gap-2 m-3 */
+  width: 100%;
+  margin-top: 20px;
+}
+.add-button .btn {
+  width: 100%;
+}

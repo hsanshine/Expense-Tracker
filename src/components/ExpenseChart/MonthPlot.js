@@ -28,6 +28,7 @@ function MonthPlot({ month, value, maxValue }) {
       </div>
       <div className="mx-auto text-dark fs-6 month">
         <span className="full-month"> {monthName(month)}</span>
+        <span className="short-month">{monthName(month)[0]}</span>
       </div>
     </div>
   );

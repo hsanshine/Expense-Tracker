@@ -1,0 +1,74 @@
+.expense-form {
+  /* row border border-primary rounded-3 border-2 m-3 expense-form */
+  border: 2px solid var(--blue);
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.expense-form form {
+  /* col g-3 p-4 */
+  padding: 15px;
+}
+.expense-form-heading {
+  /* mb-3 fs-2  */
+  margin-bottom: 10px;
+}
+
+.expense-form-fields {
+  /* row g-3 mb-3 */
+  border: 2px solid var(--blue);
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  /* border: 1px solid red; */
+  /* padding: 20px 10px; */
+  /* justify-content: space-around; */
+}
+
+.expense-form-input {
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.date-input {
+  display: flex;
+  align-items: center;
+}
+
+.date-input label {
+  margin-right: 10px;
+}
+@media (min-width: 500px) {
+  .date-input label {
+    flex: 1;
+    font-size: large;
+    margin-left: auto;
+  }
+  .date-input input {
+    flex: 1;
+    width: 100%;
+  }
+}
+.expense-form-buttons {
+  /* col-md-6 mb-3 row  */
+  display: flex;
+  flex-direction: column;
+}
+
+.expense-form-buttons button {
+  margin-bottom: 10px;
+}
+@media (min-width: 500px) {
+  .expense-form-buttons {
+    /* col-md-6 mb-3 row  */
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .expense-form-buttons button {
+    width: 100%;
+    margin-left: 10px;
+  }
+  .expense-form-buttons button:first-of-type {
+    margin-left: 0;
+  }
+}

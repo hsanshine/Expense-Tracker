@@ -1,0 +1,30 @@
+/******************************* calendar css****************************/
+/* .calendar {
+  border-radius: 10px;
+  width: 6.25rem;
+  height: 7.5rem;
+  box-sizing: border-box;
+} */
+.calender {
+  width: 6.25rem;
+  max-width: 6.25rem;
+  height: 7rem;
+  border: 1px solid green;
+  border-radius: 1rem;
+  flex: 1;
+  background-color: var(--blue);
+  text-align: center;
+  padding: 0.2rem 0;
+  margin: auto 0.125rem;
+}
+/* fw-bold text-capitalize fs-6 mt-3 mb-1 */
+.calender-month {
+  text-transform: capitalize;
+  font-size: 1.4rem;
+}
+.calender-year {
+  font-size: 1rem;
+}
+.calender-date {
+  font-size: 1.6rem;
+}

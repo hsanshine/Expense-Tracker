@@ -1,6 +1,6 @@
 import React from "react";
 import ReactModal from "react-modal";
-import ExpenseForm from "../ExpenseForm";
+import ExpenseForm from "../ExpenseForm/ExpenseForm";
 
 const EditModal = ({
   edit_item,

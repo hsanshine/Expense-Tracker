@@ -1,0 +1,22 @@
+.filter {
+  /* row p-3 m-3 rounded-3 bg-primary text-white */
+  background: var(--blue);
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  color: var(--white);
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+.filter-year {
+  /* col-sm-4 mb-1 fw-bold fs-5 */
+  font-weight: bold;
+  flex: 1;
+}
+.filter-control {
+  /* col-sm-4  ms-auto */
+  flex: 2;
+  width: 40%;
+}

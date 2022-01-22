@@ -1,9 +1,10 @@
 import React from "react";
+import "./AddButton.css";
 
 const AddButton = ({ onFormToggle }) => {
   return (
-    <div className="d-grid gap-2 m-3">
-      <button className="btn btn-primary" type="button" onClick={onFormToggle}>
+    <div className="add-button">
+      <button className="btn btn-primary " type="button" onClick={onFormToggle}>
         Add New Expense
       </button>
     </div>
