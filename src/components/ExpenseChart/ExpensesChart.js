@@ -23,7 +23,7 @@ function ExpensesChart({ expenses, displayYear }) {
         <h2>Chart area</h2>
         <div className="chart-year">{displayYear}</div>
       </div>
-      <div className="bg-warning chart-background">{chartPlot}</div>
+      <div className="chart-background">{chartPlot}</div>
     </div>
   );
 }

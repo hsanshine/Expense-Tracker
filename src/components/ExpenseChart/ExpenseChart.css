@@ -30,6 +30,7 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-gap: auto;
+  background: var(--blue);
 }
 .outer-bar {
   /* max-width: 10%; */
@@ -44,12 +45,14 @@
 .full-month {
   visibility: hidden;
   position: absolute;
+  color: var(--white);
 }
 
 @media (min-width: 500px) {
   .short-month {
     visibility: hidden;
     position: absolute;
+    color: var(--white);
     /* margin: 0; */
   }
 

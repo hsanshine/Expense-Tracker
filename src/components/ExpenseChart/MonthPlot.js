@@ -9,7 +9,6 @@ function MonthPlot({ month, value, maxValue }) {
       <div
         className="
                 rounded rounded-pill
-                bg-dark
                 mx-auto
                 my-1
                 outer-bar
